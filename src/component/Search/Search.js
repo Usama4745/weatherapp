@@ -1,9 +1,9 @@
 import React from 'react';
-
+import './Search.css';
 
 function Search() {
     return (
-        <input type="text" placeholder="Search location" />
+        <input type="text" className="search-input" placeholder="Search location" />
     );
 }
 
