@@ -15,6 +15,16 @@ function Home() {
                         </button>
                     </div>
                 </div>
+                <div className="data-container">
+                    <div className="left-data-container">
+                        <div className="today-forecast"></div>
+                        <div className="weekly-forecast"></div>
+                    </div>
+                    <div className="right-data-container">
+                        <div className="weather-map"></div>
+                        <div className="temp-converter"></div>
+                    </div>
+                </div>
             </div>
         </div>
     );
