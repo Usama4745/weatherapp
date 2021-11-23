@@ -3,13 +3,14 @@ import './Home.css'
 import Converter from './Converter/Converter';
 import WeatherCard from './WeatherCard/WeatherCard';
 import axios from 'axios';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function Home() {
     const [weatherData, setWeatherData] = useState();
     const [forecast, setForecastData] = useState();
     const [location, setLocation] = useState("islamabad");
     useEffect(() => {
-        // GET request using axios inside useEffect React hook
         axios.get('https://api.openweathermap.org/data/2.5/weather?q=' + location + '&appid='+process.env.REACT_APP_APP_TOKEN+'&units=metric')
             .then(response => { console.log((response.data)); setWeatherData(response.data) })
         axios.get('//api.openweathermap.org/data/2.5/forecast?q=' + location + '&appid='+process.env.REACT_APP_APP_TOKEN+'&units=metric')
@@ -17,23 +18,23 @@ function Home() {
                 console.log(error);
             })
         
-
-        
-        // empty dependency array means this effect will only run once (like componentDidMount in classes)
-    }, [location]);
+    },);
     const getTemp = () => {
         axios.get('https://api.openweathermap.org/data/2.5/weather?q=' + location + '&appid='+process.env.REACT_APP_APP_TOKEN+'&units=metric')
             .then(response => { setWeatherData(response.data) })
         axios.get('https://api.openweathermap.org/data/2.5/forecast?q=' + location + '&appid='+process.env.REACT_APP_FORECAST_TOKEN+'&units=metric')
             .then(response => { setForecastData(response.data) }).catch(function (error) {
-                
+                toast("Please add correct location");
             })
+            //when user will search using zipcode
         axios.get('https://api.openweathermap.org/data/2.5/weather?zip=' + location + ',pk&appid='+process.env.REACT_APP_APP_TOKEN+'&units=metric')
             .then(response => { setWeatherData(response.data) })
         axios.get('https://api.openweathermap.org/data/2.5/forecast?zip=' + location + ',pk&appid='+process.env.REACT_APP_FORECAST_TOKEN+'&units=metric')
             .then(response => { setForecastData(response.data) }).catch(function (error) {
-                
             })
+            if(!weatherData){
+                toast("Please add correct location");
+            }
 
     }
     const handleSearch = (e) =>{
@@ -89,6 +90,7 @@ function Home() {
                     </div>
                 </div>
             </div>
+            <ToastContainer />
         </div>
     );
 }
