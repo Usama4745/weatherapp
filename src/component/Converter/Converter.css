@@ -46,3 +46,17 @@ h1 {
     font-size: 4rem;
     color: hsl(183, 100%, 15%);
 }
+.celsius-div{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-left: 10px;
+}
+.farenheit-div{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-left: 10px;
+}

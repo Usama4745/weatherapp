@@ -29,12 +29,18 @@ function Converter() {
         <div>
             <h1>Temperature Converter</h1>
             <div className="converter-main">
-                <input className="convert-input"
-                    type="number"
-                    value={fareinheit} onChange={handleFarChange}
-                    id="fahrenheit" placeholder="Fahrenheit" name="f" />
+                <div className="farenheit-div">
+                    <label>Farenheit</label>
+                    <input className="convert-input"
+                        type="number"
+                        value={fareinheit} onChange={handleFarChange}
+                        id="fahrenheit" placeholder="Fahrenheit" name="f" />
+                </div>
                 <i className="fas fa-arrow-right"></i>
-                <input type="number" value={celsius} onChange={handleCelChange} className="convert-input" id="celsius" placeholder="Celsius" name="c" />
+                <div className="celsius-div">
+                    <label>Celsius</label>
+                    <input type="number" value={celsius} onChange={handleCelChange} className="convert-input" id="celsius" placeholder="Celsius" name="c" />
+                </div>
             </div>
         </div>
     );

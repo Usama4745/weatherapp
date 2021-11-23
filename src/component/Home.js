@@ -5,6 +5,8 @@ import WeatherCard from './WeatherCard/WeatherCard';
 import axios from 'axios';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
+import Loader from "react-loader-spinner";
 
 function Home() {
     const [weatherData, setWeatherData] = useState();
@@ -12,13 +14,13 @@ function Home() {
     const [location, setLocation] = useState("islamabad");
     useEffect(() => {
         axios.get('https://api.openweathermap.org/data/2.5/weather?q=' + location + '&appid='+process.env.REACT_APP_APP_TOKEN+'&units=metric')
-            .then(response => { console.log((response.data)); setWeatherData(response.data) })
+            .then(response => {  setWeatherData(response.data) })
         axios.get('//api.openweathermap.org/data/2.5/forecast?q=' + location + '&appid='+process.env.REACT_APP_APP_TOKEN+'&units=metric')
-            .then(response => { console.log((response.data)); setForecastData(response.data) }).catch(function (error) {
+            .then(response => {  setForecastData(response.data) }).catch(function (error) {
                 console.log(error);
             })
         
-    },);
+    });
     const getTemp = () => {
         axios.get('https://api.openweathermap.org/data/2.5/weather?q=' + location + '&appid='+process.env.REACT_APP_APP_TOKEN+'&units=metric')
             .then(response => { setWeatherData(response.data) })
