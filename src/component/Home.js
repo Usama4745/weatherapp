@@ -9,8 +9,6 @@ function Home() {
     const [weatherData, setWeatherData] = useState();
     const [forecast, setForecastData] = useState();
     const [location, setLocation] = useState("islamabad");
-    console.log("api key")
-    console.log(process.env.REACT_APP_APP_TOKEN);
     useEffect(() => {
         // GET request using axios inside useEffect React hook
         axios.get('https://api.openweathermap.org/data/2.5/weather?q=' + location + '&appid='+process.env.REACT_APP_APP_TOKEN+'&units=metric')
