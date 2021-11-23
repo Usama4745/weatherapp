@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import './Home.css'
-import Search from './Search/Search';
 import Converter from './Converter/Converter';
 import WeatherCard from './WeatherCard/WeatherCard';
 import axios from 'axios';
@@ -21,7 +20,7 @@ function Home() {
 
         
         // empty dependency array means this effect will only run once (like componentDidMount in classes)
-    }, []);
+    }, [location]);
     const getTemp = () => {
         axios.get('https://api.openweathermap.org/data/2.5/weather?q=' + location + '&appid='+process.env.REACT_APP_APP_TOKEN+'&units=metric')
             .then(response => { setWeatherData(response.data) })
