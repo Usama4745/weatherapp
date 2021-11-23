@@ -9,20 +9,22 @@ function Home() {
     const [weatherData, setWeatherData] = useState();
     const [forecast, setForecastData] = useState();
     const [location, setLocation] = useState("islamabad");
+    console.log("api key")
+    console.log(process.env.REACT_APP_APP_TOKEN);
     useEffect(() => {
         // GET request using axios inside useEffect React hook
-        axios.get('https://api.openweathermap.org/data/2.5/weather?q=' + location + '&appid=0327c3c2d2a39fbebaba8d1ec7813719&units=metric')
+        axios.get('https://api.openweathermap.org/data/2.5/weather?q=' + location + '&appid='+process.env.REACT_APP_APP_TOKEN+'&units=metric')
             .then(response => { console.log((response.data)); setWeatherData(response.data) })
-        axios.get('https://api.openweathermap.org/data/2.5/forecast?q=' + location + '&appid=0327c3c2d2a39fbebaba8d1ec7813719&units=metric')
+        axios.get('https://api.openweathermap.org/data/2.5/forecast?q=' + location + '&appid='+process.env.REACT_APP_APP_TOKEN+'&units=metric')
             .then(response => { console.log((response.data)); setForecastData(response.data) })
 
         
         // empty dependency array means this effect will only run once (like componentDidMount in classes)
     }, []);
     const getTemp = () => {
-        axios.get('https://api.openweathermap.org/data/2.5/weather?q=' + location + '&appid=0327c3c2d2a39fbebaba8d1ec7813719&units=metric')
+        axios.get('https://api.openweathermap.org/data/2.5/weather?q=' + location + '&appid='+process.env.REACT_APP_APP_TOKEN+'&units=metric')
             .then(response => { console.log((response.data)); setWeatherData(response.data) })
-        axios.get('https://api.openweathermap.org/data/2.5/forecast?q=' + location + '&appid=0327c3c2d2a39fbebaba8d1ec7813719&units=metric')
+        axios.get('https://api.openweathermap.org/data/2.5/forecast?q=' + location + '&appid='+process.env.REACT_APP_APP_TOKEN+'&units=metric')
             .then(response => { console.log((response.data)); setForecastData(response.data) })
 
     }
@@ -61,7 +63,6 @@ function Home() {
                             <div className="main-label">Weekly forecast for {location}</div>
                             <div className="inside-box">
                                 <div className="forecast-box">
-                                    <listItems />
                                     {forecast && Object.keys(forecast.list).map(function (keyName, keyIndex) {
                                         return (
                                             <WeatherCard key={keyName} forecast={forecast.list[keyIndex]} />
