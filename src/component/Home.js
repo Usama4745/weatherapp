@@ -13,17 +13,22 @@ function Home() {
         // GET request using axios inside useEffect React hook
         axios.get('https://api.openweathermap.org/data/2.5/weather?q=' + location + '&appid='+process.env.REACT_APP_APP_TOKEN+'&units=metric')
             .then(response => { console.log((response.data)); setWeatherData(response.data) })
-        axios.get('https://api.openweathermap.org/data/2.5/forecast?q=' + location + '&appid='+process.env.REACT_APP_APP_TOKEN+'&units=metric')
-            .then(response => { console.log((response.data)); setForecastData(response.data) })
+        axios.get('//api.openweathermap.org/data/2.5/forecast?q=' + location + '&appid='+process.env.REACT_APP_APP_TOKEN+'&units=metric')
+            .then(response => { console.log((response.data)); setForecastData(response.data) }).catch(function (error) {
+                console.log(error);
+            })
 
         
         // empty dependency array means this effect will only run once (like componentDidMount in classes)
     }, []);
     const getTemp = () => {
         axios.get('https://api.openweathermap.org/data/2.5/weather?q=' + location + '&appid='+process.env.REACT_APP_APP_TOKEN+'&units=metric')
-            .then(response => { console.log((response.data)); setWeatherData(response.data) })
-        axios.get('https://api.openweathermap.org/data/2.5/forecast?q=' + location + '&appid='+process.env.REACT_APP_APP_TOKEN+'&units=metric')
-            .then(response => { console.log((response.data)); setForecastData(response.data) })
+            .then(response => { setWeatherData(response.data) })
+        axios.get('https://api.openweathermap.org/data/2.5/forecast/daily?q=' + location + '&cnt=7&appid='+process.env.REACT_APP_FORECAST_TOKEN+'&units=metric')
+            .then(response => { setForecastData(response.data) }).catch(function (error) {
+                alert("Please enter a valid location");
+                
+            })
 
     }
     const handleSearch = (e) =>{
@@ -44,7 +49,7 @@ function Home() {
                 <div className="data-container">
                     <div className="left-data-container">
                         <div className="today-forecast">
-                            <div className="main-label">Today's forecast for {location}</div>
+                            <div className="main-label">Today's forecast for {weatherData && weatherData.name}</div>
                             <div className="inside-box">
                                 <div className="temp-box">
                                     <div className="temperature curr-temp">current temperature: {weatherData && weatherData.main.temp} &#176;C</div>
@@ -58,7 +63,7 @@ function Home() {
                             </div>
                         </div>
                         <div className="weekly-forecast">
-                            <div className="main-label">Weekly forecast for {location}</div>
+                            <div className="main-label">Weekly forecast for {weatherData && weatherData.name}</div>
                             <div className="inside-box">
                                 <div className="forecast-box">
                                     {forecast && Object.keys(forecast.list).map(function (keyName, keyIndex) {

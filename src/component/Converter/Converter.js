@@ -1,18 +1,29 @@
-import React,{useState} from 'react';
+import React, { useState } from 'react';
 import './Converter.css';
 
 function Converter() {
     const [celsius, setCelsius] = useState();
     const [fareinheit, setfareinheit] = useState();
 
-    
-    const handleCelChange = (e) =>{
-        setfareinheit((e.target.value*(9/5))+32) 
-        setCelsius(e.target.value) 
+
+    const handleCelChange = (e) => {
+        if (e.target.value === '') {
+            setCelsius('');
+            setfareinheit('');
+        }
+        else {
+            setfareinheit((e.target.value * (9 / 5)) + 32)
+            setCelsius(e.target.value)
+        }
     }
-    const handleFarChange = (e) =>{
-        setfareinheit(e.target.value)
-        setCelsius((e.target.value-32)*(5/9))
+    const handleFarChange = (e) => {
+        if (e.target.value === '') {
+            setCelsius('');
+            setfareinheit('');
+        } else {
+            setfareinheit(e.target.value)
+            setCelsius((e.target.value - 32) * (5 / 9))
+        }
     }
     return (
         <div>
@@ -21,9 +32,9 @@ function Converter() {
                 <input className="convert-input"
                     type="number"
                     value={fareinheit} onChange={handleFarChange}
-                    id="fahrenheit" placeholder="Fahrenheit" name="f"/>
+                    id="fahrenheit" placeholder="Fahrenheit" name="f" />
                 <i className="fas fa-arrow-right"></i>
-                <input type="number" value={celsius} onChange={handleCelChange} className="convert-input" id="celsius" placeholder="Celsius" name="c"/>
+                <input type="number" value={celsius} onChange={handleCelChange} className="convert-input" id="celsius" placeholder="Celsius" name="c" />
             </div>
         </div>
     );

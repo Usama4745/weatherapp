@@ -10,7 +10,7 @@
 }
 
 .sub-container {
-    height: 65vh;
+    height: 80vh;
     width: 60vw;
     background-color: white;
     margin: auto;
@@ -66,13 +66,12 @@
     flex-direction: row;
     justify-content: center;
     align-items: center;
-    border: 1px solid black;
+    margin-top: 25px;
 }
 
 .left-data-container {
     display: flex;
     flex-direction: column;
-    border: 1px solid black;
     height: 100%;
     width: 50%;
     background-color: hsl(183, 100%, 15%);
@@ -84,7 +83,6 @@
 .right-data-container {
     display: flex;
     flex-direction: column;
-    border: 1px solid black;
     height: 100%;
     width: 50%;
 }
@@ -97,32 +95,28 @@
 .weekly-forecast{
     display: flex;
     flex-direction: column;
-    border: 1px solid black;
     height: 50%;
     width: 100%;
 }
 .weather-map{
     display: flex;
     flex-direction: column;
-    border: 1px solid black;
     height: 70%;
     width: 100%;
 }
 .temp-converter{
     display: flex;
     flex-direction: column;
-    border: 1px solid black;
     height: 30%;
     width: 100%;
 }
 .inside-box{
     width: 90%;
-    height: 90%;
+    height: 65%;
     margin: auto;
     background-color: white;
     display: flex;
     flex-direction: row;
-    border-radius: 20px;
     padding: 3%;
 }
 .main-label{
