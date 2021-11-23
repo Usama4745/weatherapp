@@ -17,6 +17,7 @@ function Home() {
             .then(response => { console.log((response.data)); setForecastData(response.data) }).catch(function (error) {
                 console.log(error);
             })
+        
 
         
         // empty dependency array means this effect will only run once (like componentDidMount in classes)
@@ -24,9 +25,14 @@ function Home() {
     const getTemp = () => {
         axios.get('https://api.openweathermap.org/data/2.5/weather?q=' + location + '&appid='+process.env.REACT_APP_APP_TOKEN+'&units=metric')
             .then(response => { setWeatherData(response.data) })
-        axios.get('https://api.openweathermap.org/data/2.5/forecast/daily?q=' + location + '&cnt=7&appid='+process.env.REACT_APP_FORECAST_TOKEN+'&units=metric')
+        axios.get('https://api.openweathermap.org/data/2.5/forecast?q=' + location + '&appid='+process.env.REACT_APP_FORECAST_TOKEN+'&units=metric')
             .then(response => { setForecastData(response.data) }).catch(function (error) {
-                alert("Please enter a valid location");
+                
+            })
+        axios.get('https://api.openweathermap.org/data/2.5/weather?zip=' + location + ',pk&appid='+process.env.REACT_APP_APP_TOKEN+'&units=metric')
+            .then(response => { setWeatherData(response.data) })
+        axios.get('https://api.openweathermap.org/data/2.5/forecast?zip=' + location + ',pk&appid='+process.env.REACT_APP_FORECAST_TOKEN+'&units=metric')
+            .then(response => { setForecastData(response.data) }).catch(function (error) {
                 
             })
 
